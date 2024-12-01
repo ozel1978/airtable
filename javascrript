@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = 'YOUR_API_KEY';
-    const baseId = 'YOUR_BASE_ID';
-    const tableName = 'YOUR_TABLE_NAME';
+    const apiKey = 'pat1pToV4GsAbnzxW';
+    const baseId = 'appbF37yUAhnoZrg1';
+    const tableName = 'December';
 
     fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`, {
         headers: {
