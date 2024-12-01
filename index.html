@@ -22,6 +22,32 @@
     
     <script>
         // Add your JavaScript here
+       document.addEventListener('DOMContentLoaded', function() {
+    const apiKey = 'pat1pToV4GsAbnzxW';
+    const baseId = 'appbF37yUAhnoZrg1';
+    const tableName = 'December';
+
+    fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`, {
+        headers: {
+            Authorization: `Bearer ${apiKey}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('airtable-data');
+        data.records.forEach(record => {
+            const recordDiv = document.createElement('div');
+            recordDiv.className = 'record';
+            recordDiv.innerHTML = `
+                <h2>${record.fields.Name}</h2>
+                <p>${record.fields.Description}</p>
+                <!-- Add more fields as needed -->
+            `;
+            container.appendChild(recordDiv);
+        });
+    })
+    .catch(error => console.error('Error fetching Airtable data:', error));
+}); 
     </script>
 </body>
 </html>
