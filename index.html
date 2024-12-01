@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Airtable Page</title>
     <style>
-        /* Add your CSS styles here */
         body {
             font-family: Arial, sans-serif;
         }
@@ -21,33 +20,31 @@
     <div id="airtable-data"></div>
     
     <script>
-        // Add your JavaScript here
-       document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = 'pat1pToV4GsAbnzxW';
-    const baseId = 'appbF37yUAhnoZrg1';
-    const tableName = 'December';
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiKey = 'pat1pToV4GsAbnzxW';  // Replace with your actual API key
+            const baseId = 'appbF37yUAhnoZrg1';  // Replace with your actual Base ID
+            const tableName = 'December';  // Replace with your actual Table Name
 
-    fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`, {
-        headers: {
-            Authorization: `Bearer ${apiKey}`
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('airtable-data');
-        data.records.forEach(record => {
-            const recordDiv = document.createElement('div');
-            recordDiv.className = 'record';
-            recordDiv.innerHTML = `
-                <h2>${record.fields.Name}</h2>
-                <p>${record.fields.Description}</p>
-                <!-- Add more fields as needed -->
-            `;
-            container.appendChild(recordDiv);
+            fetch(`https://api.airtable.com/v0/${baseId}/${tableName}`, {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('airtable-data');
+                data.records.forEach(record => {
+                    const recordDiv = document.createElement('div');
+                    recordDiv.className = 'record';
+                    recordDiv.innerHTML = `
+                        <h2>${record.fields.Name}</h2>
+                        <p>${record.fields.Description}</p>
+                    `;
+                    container.appendChild(recordDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching Airtable data:', error));
         });
-    })
-    .catch(error => console.error('Error fetching Airtable data:', error));
-}); 
     </script>
 </body>
 </html>
